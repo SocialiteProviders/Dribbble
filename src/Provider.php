@@ -17,7 +17,9 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://dribbble.com/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase(
+            'https://dribbble.com/oauth/authorize', $state
+        );
     }
 
     /**
@@ -33,11 +35,9 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get('https://api.dribbble.com/v1/user?access_token='.$token, [
-            'headers' => [
-                'Accept' => 'application/json',
-            ],
-        ]);
+        $response = $this->getHttpClient()->get(
+            'https://api.dribbble.com/v1/user?access_token='.$token
+        );
 
         return json_decode($response->getBody(), true);
     }
@@ -48,11 +48,9 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'       => $user['id'],
-            'nickname' => $user['username'],
-            'name'     => $user['name'],
-            'email'    => array_get($user, 'email'),
-            'avatar'   => $user['avatar_url'],
+            'id' => $user['id'], 'nickname' => $user['username'],
+            'name' => $user['name'], 'email' => array_get($user, 'email'),
+            'avatar' => $user['avatar_url'],
         ]);
     }
 }
