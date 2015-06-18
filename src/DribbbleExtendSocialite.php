@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialiteProviders\Dribbble;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
