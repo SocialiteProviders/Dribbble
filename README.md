@@ -46,5 +46,4 @@ return Socialite::driver('dribbble')->redirect();
 - ``id``
 - ``nickname``
 - ``name``
-- ``email``
 - ``avatar``
